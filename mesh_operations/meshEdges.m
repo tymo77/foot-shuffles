@@ -1,6 +1,6 @@
-function faceIndices=meshFaces(tetraIndices)
+function faceIndices=meshEdges(tetraIndices)
 
-targetDim=3;
+targetDim=2;
 
 N=size(tetraIndices,1);
 NperTet=nchoosek(4,targetDim);
