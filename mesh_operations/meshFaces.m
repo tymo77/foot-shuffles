@@ -1,12 +1,14 @@
 function faceIndices=meshFaces(tetraIndices)
 
 targetDim=3;
+sourceDim=size(tetraIndices,2);
 
 N=size(tetraIndices,1);
-NperTet=nchoosek(4,targetDim);
+NperTet=nchoosek(sourceDim,targetDim);
+
 
 faceIndices=zeros(NperTet*N,targetDim);
-ind=nchoosek([1 2 3 4],targetDim);
+ind=nchoosek(1:sourceDim,targetDim);
 
 for i=1:NperTet:NperTet*N
     
