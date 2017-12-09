@@ -1,3 +1,5 @@
+
+loadSubDirectories();
 close all
 distalLen=1;
 proximalLen=1;
