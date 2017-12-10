@@ -1,7 +1,7 @@
-function [xstar,fstar]=fminmesh(fun,initVertex,points,indices)
+function [xstarList,fstar]=fminmesh(fun,initVertex,points,indices)
 
 remainingOptions=indices;
-step=0;
+step=1;
 atMin=false;
 
 %find a face with the inital vertex
@@ -16,8 +16,23 @@ address=[1 2 3];
 
 %start loop
 while ~atMin&&step<1000
-    [xstar,fstar,activeEdges]=fminOnMeshFace(fun,opPoints(address(opIndices==startVertex),:),opPoints);
-    
+    startPoint=opPoints(address(opIndices==startVertex),:);
+    if (norm(opPoints(1,:)-opPoints(2,:))==0) || (norm(opPoints(1,:)-opPoints(3,:))==0) || (norm(opPoints(2,:)-opPoints(3,:))==0)
+        xstar=startPoint;%if the face is degenerate, don't optimize - just skip
+        fstar=fun(startPoint);
+        
+        activeVertex=opIndices==startVertex;
+        if activeVertex==[1 0 0]
+            activeEdges=[1 0 1];
+        elseif activeVertex==[0 1 0]
+            activeEdges=[1 1 0];
+        else
+            activeEdges=[0 1 1];
+        end
+    else
+        [xstar,fstar,activeEdges]=fminOnMeshFace(fun,startPoint,opPoints);
+    end
+    xstarList(step,:)=xstar';
     %the result can be on a vertex, on an edge, or in the middle of a face
     if sum(activeEdges)==2 %vertex
         if sum(activeEdges==[1 1 0])==3
@@ -42,10 +57,11 @@ while ~atMin&&step<1000
         end
         
     elseif sum(activeEdges)==1 %edge
-        activeEdgeIndices=opIndices(address(activeEdges));
+        activeEdgeIndices=activeConstToEdges(activeEdges,opIndices);
         
-        nextFaces=findFace(activeEdgeIndices,indices);
-        if numel(nextFaces)<2%if there aren't two faces that share that edge it is a boundary
+        nextFaces=findFace(activeEdgeIndices,remainingOptions);
+        nextFaces=nextFaces(nextFaces~=opFace);%don't go to the same face again dummy
+        if numel(nextFaces)==0%if there are no faces left that share that edge
             atMin=true;
         else
             
@@ -76,4 +92,19 @@ end
 [~,I]=min(dist);
 index=nextIndices(I(1));
 
+end
+
+function activeEdgeIndices=activeConstToEdges(activeEdges,opIndices)
+
+if sum(activeEdges==[1 0 0])==3
+    key=[1 2];
+elseif sum(activeEdges==[0 1 0])==3
+    key=[2 3];
+elseif sum(activeEdges==[0 0 1])==3
+    key=[1 3];
+else
+    error('active edge condition misidentified')
+end
+
+activeEdgeIndices=opIndices(key);
 end
