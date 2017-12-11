@@ -1,5 +1,6 @@
 function [xstar,fstar,activeEdges]=fminOnMeshFace(fun,startPoint,vertexPts)
 p1=vertexPts(1,:)';p2=vertexPts(2,:)';p3=vertexPts(3,:)';
+warning('off','MATLAB:rankDeficientMatrix');
 
 %vectors along edges
 v23=p3-p2;
@@ -48,13 +49,14 @@ xstar=M*ystar+d;
 fstar=fun(xstar);
 
 %check if any vertices are better
-for i=1:size(vertexPts,1)
-    if fun(vertexPts(i,:))<fstar
+
+ for i=1:size(vertexPts,1)
+     if fun(vertexPts(i,:))<fstar
         xstar=vertexPts(i,:)';
         fstar=fun(vertexPts(i,:));
         ystar=M\(xstar-d);
-    end
-end
+     end
+ end
 
 %check boundary
 edgDist13=-A*ystar;

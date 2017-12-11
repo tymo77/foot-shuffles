@@ -16,8 +16,8 @@ address=[1 2 3];
 
 %start loop
 while ~atMin&&step<1000
-    startPoint=opPoints(address(opIndices==startVertex),:);
-    if (norm(opPoints(1,:)-opPoints(2,:))==0) || (norm(opPoints(1,:)-opPoints(3,:))==0) || (norm(opPoints(2,:)-opPoints(3,:))==0)
+    startPoint=points(startVertex,:);
+    if (norm(opPoints(1,:)-opPoints(2,:))<eps) || (norm(opPoints(1,:)-opPoints(3,:))<eps) || (norm(opPoints(2,:)-opPoints(3,:))<eps)
         xstar=startPoint;%if the face is degenerate, don't optimize - just skip
         fstar=fun(startPoint);
         
@@ -32,6 +32,7 @@ while ~atMin&&step<1000
     else
         [xstar,fstar,activeEdges]=fminOnMeshFace(fun,startPoint,opPoints);
     end
+    
     xstarList(step,:)=xstar';
     %the result can be on a vertex, on an edge, or in the middle of a face
     if sum(activeEdges)==2 %vertex
@@ -80,6 +81,8 @@ while ~atMin&&step<1000
     step=step+1;
 end %while end
 
+
+
 end
 
 function index=closestVertex(activePoint,nextIndices,nextPoints)
@@ -91,6 +94,7 @@ end
 
 [~,I]=min(dist);
 index=nextIndices(I(1));
+
 
 end
 
