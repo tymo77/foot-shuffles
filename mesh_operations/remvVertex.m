@@ -36,11 +36,6 @@ cleanvertices=removeRows(faces,vertices);
 cleanvertices=[cleanvertices; submesh];
 end
 
-function y=flatten2D(x)
-N=numel(x);
-y=reshape(x,1,N);
-end
-
 function C=remove(x,A)
 C=A(~(A==x));
 end
