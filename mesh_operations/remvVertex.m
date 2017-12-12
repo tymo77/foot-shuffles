@@ -9,6 +9,7 @@ faces=[];
 for i=1:length(allbadverts)
     faces=[faces; unique(findFace(allbadverts(i),vertices))];
 end
+faces=unique(faces);
 targetvertices=unique(flatten2D(vertices(faces,:)));
 oldbound=getExternalEdges(vertices(faces,:));
 
@@ -66,7 +67,7 @@ else
         allangles(i,:)=interAngles(points(testvertices(i,:),:));
     end
     
-    newbadverts=setdiff(testvertices(allangles>deg2rad(179.5))',badverts);
+    newbadverts=setdiff(testvertices(allangles>deg2rad(179))',badverts);
     
     subsequentbad=checkForAdjacentSkinnyCells(newbadverts,[faces; facestoignore],vertices,points);
     newbadverts=[newbadverts subsequentbad];
