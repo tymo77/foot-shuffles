@@ -5,14 +5,13 @@ step=1;
 atMin=false;
 
 %find a face with the inital vertex
-initFaces=findFace([initVertex],indices);
+initFaces=findFace(initVertex,indices);
 initFace=initFaces(1);
 
 opFace=initFace;
 opIndices=indices(initFace,:);
 opPoints=points(opIndices,:);
 startVertex=initVertex;
-address=[1 2 3];
 
 %start loop
 while ~atMin&&step<1000
@@ -22,9 +21,9 @@ while ~atMin&&step<1000
         fstar=fun(startPoint);
         
         activeVertex=opIndices==startVertex;
-        if activeVertex==[1 0 0]
+        if all(activeVertex==[1 0 0])
             activeEdges=[1 0 1];
-        elseif activeVertex==[0 1 0]
+        elseif all(activeVertex==[0 1 0])
             activeEdges=[1 1 0];
         else
             activeEdges=[0 1 1];
@@ -36,9 +35,9 @@ while ~atMin&&step<1000
     xstarList(step,:)=xstar';
     %the result can be on a vertex, on an edge, or in the middle of a face
     if sum(activeEdges)==2 %vertex
-        if sum(activeEdges==[1 1 0])==3
+        if all(activeEdges==[1 1 0])
             activeVertex=opIndices(2);
-        elseif sum(activeEdges==[0 1 1])==3
+        elseif all(activeEdges==[0 1 1])
             activeVertex=opIndices(3);
         else
             activeVertex=opIndices(1);
@@ -46,7 +45,7 @@ while ~atMin&&step<1000
         
         %remove the vertex on that face from remaining options
         remainingOptions(opFace,remainingOptions(opFace,:)==activeVertex)=0;
-        nextFaces=findFace([activeVertex],remainingOptions);
+        nextFaces=findFace(activeVertex,remainingOptions);
         if numel(nextFaces)==0
             atMin=true;
         else
