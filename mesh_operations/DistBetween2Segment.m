@@ -24,11 +24,11 @@ function [distance, closept] = DistBetween2Segment(p1, p2, p3, p4)
     v = p3 - p4;
     w = p2 - p4;
     
-    a = dot(u,u);
-    b = dot(u,v);
-    c = dot(v,v);
-    d = dot(u,w);
-    e = dot(v,w);
+    a = u*u';
+    b = u*v';
+    c = v*v';
+    d = u*w';
+    e = v*w';
     D = a*c - b*b;
     sD = D;
     tD = D;
