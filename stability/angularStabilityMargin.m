@@ -23,7 +23,10 @@ end
 Ivector(numberOfContactPoints,:) =(eye(3) - transpose(aNorm(numberOfContactPoints,:))*aNorm(numberOfContactPoints,:))*(p(1,:) - pc)';
 
 %pre-allocate
-temp=zeros(numberOfContactPoints,3);f=temp;n=temp;fstar=temp;fstarNorm=temp;
+temp=zeros(numberOfContactPoints,3);
+f=temp;n=temp;
+fstar=zeros(numberOfContactPoints,3);
+fstarNorm=temp;
 th=zeros(numberOfContactPoints,1);alpha=th;
 
 for i=1:numberOfContactPoints
