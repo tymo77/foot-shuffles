@@ -1,13 +1,23 @@
-function fval=meshPenalty(f,xy,p,vertPts1,vertPts2,vertPts3,edges,points)
+function fval=meshPenalty(f,xy,p,varargin)
+Nregions=length(varargin);
 
-xyzmesh=xyMeshIntercept(xy, vertPts1, vertPts2, vertPts3);
+if Nregions ~= size(xy,1)
+    error('no. of mesh regions passed does not match no. of points');
+end
+xyzmesh=zeros(Nregions,3);
+dists=zeros(Nregions,1);
 
-if numel(xyzmesh)==0
-    [dist,clspt]=distanceFromEdge(xy,edges,points);
-    fval=f(clspt)+dist^p;
-else
-    fval=f(xyzmesh(1,:));
+for i=1:Nregions
+    xyzint=xyMeshIntercept(xy(i,:), varargin{i}.vertPt1, varargin{i}.vertPt2, varargin{i}.vertPt3);
+    if numel(xyzint)==0
+        [dists(i),xyzmesh(i,:)]=distanceFromEdge(xy(i,:),varargin{i}.extEdges,varargin{i}.points);
+    else
+        xyzmesh(i,:)=xyzint;
+    end
+    
+
 end
 
+fval=sum(sum(f(xyzmesh)+dists.^p));
 
 end
