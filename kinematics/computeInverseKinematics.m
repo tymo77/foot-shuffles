@@ -1,8 +1,14 @@
-function [angles,flags]=computeInverseKinematics(px, py, pz, WBody, LBody, LProximal, LDistal, LegNo)
+function [angles,flags]=computeInverseKinematics(px, py, pz, LegNo, robot)
 %calculates four inverse kinematic solutions for each leg
 %accounts for the different displacement of the hip frame
 %relative to the body frame for each hip position
 flagA=0;flagB=0;
+
+WBody=robot.bodyW;
+LBody=robot.bodyL;
+LProximal=robot.proxLen;
+LDistal=robot.distLen; 
+
 
 ky = py - 1/2*sqrt(2)*sin(1/2*pi*(LegNo - 1)+pi/4)*WBody;
 kx = px - 1/2*sqrt(2)*cos(1/2*pi*(LegNo - 1)+pi/4)*LBody;

@@ -1,4 +1,10 @@
-function [feasibleTri,mask]=filterTriByCentroid(triIndices,pts,minAngles,maxAngles,WBody, LBody, LProximal, LDistal, LegNo)
+function [feasibleTri,mask]=filterTriByCentroid(triIndices,pts,...
+    minAngles,maxAngles,LegNo,robot)
+
+WBody=robot.bodyW;
+LBody=robot.bodyL;
+LProximal=robot.proxLen;
+LDistal=robot.distLen;
 
 if length(minAngles)==1
     minAngles=[minAngles minAngles minAngles];
@@ -19,7 +25,7 @@ feasibleTri=triIndices(logical(mask),:);
 
     function feasible=testPoint(p)
         px=p(1);py=p(2);pz=p(3);
-        [angles,flags]=computeInverseKinematics(px, py, pz, WBody, LBody, LProximal, LDistal, LegNo);
+        [angles,flags]=computeInverseKinematics(px, py, pz, LegNo, robot);
         angles=mapAngleAroundZero(angles);
         minAngles=mapAngleAroundZero(minAngles);
         maxAngles=mapAngleAroundZero(maxAngles);

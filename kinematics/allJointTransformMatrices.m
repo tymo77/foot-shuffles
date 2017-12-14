@@ -1,10 +1,20 @@
-function output=allJointTransformMatrices(thX,thY,thZ,bodyX,bodyY,bodyZ,jointAngles,wBodyInput,lenBodyInput,distalLen,proximalLen)
+function output=allJointTransformMatrices(jointAngles,robot)
 output = zeros(4,4,5,4);
 %{
     Simply defines the transformation matrices for each leg.
 	The solution matrix is obtained from a separate file in the parent directory
 %}
 
+thX=robot.bodyRot(1);
+thY=robot.bodyRot(2);
+thZ=robot.bodyRot(3);
+bodyX=robot.bodyPos(1);
+bodyY=robot.bodyPos(2);
+bodyZ=robot.bodyPos(3);
+wBodyInput=robot.bodyW;
+lenBodyInput=robot.bodyL;
+distalLen=robot.distLen;
+proximalLen=robot.proxLen;
 
 for i=1:4
     %{

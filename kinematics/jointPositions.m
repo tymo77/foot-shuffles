@@ -1,4 +1,11 @@
-function p=jointPositions(bodyAngles,bodyPos,jointAngles,wBodyInput,lenBodyInput,distalLen,proximalLen,legNo)
+function p=jointPositions(jointAngles,legNo,robot)
+
+bodyAngles=robot.bodyRot;
+bodyPos=robot.bodyPos;
+wBodyInput=robot.bodyW;
+lenBodyInput=robot.bodyL;
+distalLen=robot.distLen;
+proximalLen=robot.proxLen;
 
 bodyX=bodyPos(1);bodyY=bodyPos(2);bodyZ=bodyPos(3);
 thX=bodyAngles(1);thY=bodyPos(2);thZ=bodyPos(3);
