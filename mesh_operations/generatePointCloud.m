@@ -1,18 +1,9 @@
-function [x,y,z]=generatePointCloud(N,th1Range,th2Range,th3Range,legNo,...
-    robot)
+function [x,y,z]=generatePointCloud(th1Range,th2Range,th3Range,legNo,robot)
 
-bodyPos=robot.bodyPos;
-bodyRot=robot.bodyRot;
-bodyW=robot.bodyW;
-bodyL=robot.bodyL;
-distalLen=robot.distLen;
-proximalLen=robot.proxLen;
-
+N=length(th1Range);
 [TH1,TH2,TH3]=meshgrid(th1Range,th2Range,th3Range);
 
-f=@(th1,th2,th3) footPosForwardKinematics(bodyRot(1),bodyRot(2),...
-    bodyRot(3), bodyRot(1),bodyPos(2),bodyPos(3),[th1,th2,th3],...
-    bodyW,bodyL,distalLen,proximalLen,legNo);
+f=@(th1,th2,th3) footPosForwardKinematics([th1,th2,th3],legNo,robot);
 
 x=zeros(N^3,1);
 y=x;z=x;

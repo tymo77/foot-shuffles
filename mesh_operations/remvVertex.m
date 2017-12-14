@@ -62,7 +62,7 @@ else
         allangles(i,:)=interAngles(points(testvertices(i,:),:));
     end
     
-    newbadverts=setdiff(testvertices(allangles>deg2rad(179))',badverts);
+    newbadverts=setdiff(testvertices(allangles>deg2rad(177))',badverts);
     
     subsequentbad=checkForAdjacentSkinnyCells(newbadverts,[faces; facestoignore],vertices,points);
     newbadverts=[newbadverts subsequentbad];

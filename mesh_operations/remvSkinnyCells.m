@@ -10,7 +10,7 @@ while i<=size(filterindices,1)
     
     %if the angle is too oblique remove the vertex it corresponds to and
     %remesh the indices
-    if maxangle>deg2rad(179)
+    if maxangle>deg2rad(177)
         filterindices=remvVertex(filterindices(i,angI),filterindices,points);
     end
     i=i+1;
