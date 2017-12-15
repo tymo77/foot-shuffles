@@ -1,16 +1,18 @@
 Algoritm Goals:
-
+-----------------------------
 Increase stability
 Increase stability in few steps
 
 
 Brainstorm:
+-----------------------------
 Pareto optimum - min stability vs max stability
 minimax
 Pareto optima - max stability vs no. of steps
 
 
 Problem Formulation:
+-----------------------------
 Let's formulate the problem as follows:
 - We have some min stability which is acceptable. This is positive but near zero.
 - We have some min stability which triggers a search for a better position.
@@ -21,6 +23,7 @@ without becoming more unstable - if possible.
 
 
 Plan: 
+-----------------------------
 Pick a suitable shuffle problem (one which is just below the threshold)
 Use GlobalOptimization to find the global optima
 Compare to fminunc
@@ -33,5 +36,16 @@ step number with optimal stability given the constraints
 
 
 
-Possible future plan:
+Possible Future Plan:
+----------------------------
 Use pareto front to inspire a weighted fitness function
+
+
+Algorithm
+----------------------------
+x Determine moveable legs which meet the threshold
+Build all movesets of length n or shorter which are initially moveable
+Initial condition is current placement
+Optimize final stability with threshold constraint
+Compare N step vs max stability pareto front
+If exit flag is -2 then there is no solution
