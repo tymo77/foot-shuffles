@@ -1,0 +1,41 @@
+Algoritm Goals:
+
+Increase stability
+Increase stability in few steps
+
+
+Brainstorm:
+Pareto optimum - min stability vs max stability
+minimax
+Pareto optima - max stability vs no. of steps
+
+
+Problem Formulation:
+Let's formulate the problem as follows:
+- We have some min stability which is acceptable. This is positive but near zero.
+- We have some min stability which triggers a search for a better position.
+- In this search we may not go below the minimum stability.
+
+If the robot is unstable, let us say that it should seek satisfactory stability in the fewest steps
+without becoming more unstable - if possible.
+
+
+To-do:
+Optimize all step orders
+Calculate optimium stability for given load
+
+
+Plan: Pick a suitable shuffle problem -
+Use GlobalOptimization to find the global optima
+Compare to fminunc
+Compare to other global algorithms
+
+Use the optimal solution as the benchmark
+
+Run the optimization algo of choice with all step numbers and orders and build a pareto front to compare
+step number with optimal stability given the constraints
+
+
+
+Possible future plan:
+Use pareto front to inspire a weighted fitness function
