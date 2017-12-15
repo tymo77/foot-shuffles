@@ -11,7 +11,7 @@ numberOfContactPoints = length(p); %initialize the number of contact points base
 
 %Tipover Mode Axes
 a=circshift(p,-1)-p;
-aNorm = normr(a);
+aNorm = mynormr(a);
 
 %pre-allocate
 Ivector=zeros(numberOfContactPoints,3);
@@ -35,16 +35,16 @@ for i=1:numberOfContactPoints
     n(i,:) = (transpose(aNorm(i,:))*aNorm(i,:))*nResult';
     
     %New Net Force Vector for the Tipover Axes
-    fStar(i,:) = f(i,:) + cross(normr(Ivector(i,:)), n(i,:))/norm(Ivector(i,:));
-    fStarNorm(i,:) = normr(fStar(i,:));
+    fStar(i,:) = f(i,:) + cross(mynormr(Ivector(i,:)), n(i,:))/norm(Ivector(i,:));
+    fStarNorm(i,:) = mynormr(fStar(i,:));
     
     %Force-Angle Stability Measure Candidate Angles
-    if cross(normr(Ivector(i,:)), fStarNorm(i,:))*aNorm(i,:)' < 0
+    if cross(mynormr(Ivector(i,:)), fStarNorm(i,:))*aNorm(i,:)' < 0
         sigma = 1;
     else
         sigma = -1;
     end
-    th(i)=sigma*acos(fStarNorm(i,:)*normr(Ivector(i,:))');
+    th(i)=sigma*acos(fStarNorm(i,:)*mynormr(Ivector(i,:))');
     
     %Angular Stability Margin
     alpha(i) = th(i)*norm(fResult);
