@@ -20,12 +20,8 @@ If the robot is unstable, let us say that it should seek satisfactory stability 
 without becoming more unstable - if possible.
 
 
-To-do:
-Optimize all step orders
-Calculate optimium stability for given load
-
-
-Plan: Pick a suitable shuffle problem -
+Plan: 
+Pick a suitable shuffle problem (one which is just below the threshold)
 Use GlobalOptimization to find the global optima
 Compare to fminunc
 Compare to other global algorithms
