@@ -24,13 +24,15 @@ sx=surfPts(:,1);sy=surfPts(:,2);
 
 triSurf=delaunay(sx,sy);
 intPts=mesh2mesh(workspaceFaces,workspacePts,triSurf,surfPts);
+intPts=removeDuplicatePoints(intPts,100*eps);
 
 %% filter intersection
 filterPts=filterPtsByInvKin(intPts-robot.bodyPos,minAngle,maxAngle,legNo,robot);
 filterTri=delaunay(filterPts(:,1),filterPts(:,2));
-filterTri=filterTriByCentroid(filterTri,filterPts-robot.bodyPos,minAngle,maxAngle,legNo,robot);
+filterTri=filterTriByCentroid(filterTri,filterPts,minAngle,maxAngle,legNo,robot);
 filterTri=removeDuplicateFaces(filterTri);
 
+filterPts=filterPts+robot.bodyPos;
 %% remove bad cells
 filterTri=improveMesh(filterTri,filterPts);
 
