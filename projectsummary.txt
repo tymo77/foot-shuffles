@@ -44,7 +44,7 @@ Use pareto front to inspire a weighted fitness function
 Algorithm
 ----------------------------
 x Determine moveable legs which meet the threshold
-Build all movesets of length n or shorter which are initially moveable
+x Build all movesets of length n or shorter which are initially moveable
 Initial condition is current placement
 Optimize final stability with threshold constraint
 Compare N step vs max stability pareto front
