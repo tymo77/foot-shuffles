@@ -5,5 +5,5 @@ for i=1:4
     interstability(i)=angularStabilityMargin(pc,initpos(setdiff(legs,i),:),f,n);
 end
 
-moveable=legs(interstability>thresh);
+moveable=legs(interstability>=thresh);
 end
