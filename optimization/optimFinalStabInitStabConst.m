@@ -6,15 +6,13 @@ thresh=initstab;
 
 
 stability=@(x) -endStabFit(x,order,init,robot.bodyPos,fResult,nResult);
-f=@(x)meshPenalty(stability,x,2,...
-    regions(order(1)).mesh,regions(order(2)).mesh,...
-    regions(order(3)).mesh,regions(order(4)).mesh);
+f=@(x)meshPenalty(stability,x,2,order,regions);
 
 nonlconst=@(x) minStabConst(thresh,x,order,init,robot.bodyPos,fResult,nResult,regions);
 
-opts = optimoptions(@fmincon,'MaxFunctionEvaluations',10000,'Display','notify');
+opts = optimoptions(@fmincon,'MaxFunctionEvaluations',10000,'Display','off');
 
-problem = struct('solver','fmincon','x0',init(:,1:2),...
+problem = struct('solver','fmincon','x0',init(order,1:2),...
     'objective',f,'nonlcon',nonlconst,'Aineq',[],'bineq',[],...
     'Aeq',[],'beq',[],'lb',[],'ub',[],'options',opts);
 

@@ -3,6 +3,9 @@ function order=stepOrdersN(initpos,thresh,pc,f,n,N,method)
 initmoveable=moveableLegs(initpos,thresh,pc,f,n);
 legs=[1 2 3 4];
 
+if numel(initmoveable)==0
+    order=[];
+else
 if method == 1
     
     if N<=4
@@ -19,7 +22,9 @@ elseif method == 2
 else
     error('invalid step order gen method')
 end
+
 order=order(any(order(:,1)==initmoveable,2),:);
+end
 end
 
 function p=permsr(x)

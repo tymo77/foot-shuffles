@@ -7,4 +7,5 @@ for i=1:N
     end
 end
 
+ordersList=ordersList(~cellfun('isempty',ordersList));
 end
