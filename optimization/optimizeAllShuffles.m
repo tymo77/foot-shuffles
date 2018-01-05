@@ -1,9 +1,10 @@
-function [xstars,exitflags]=optimizeAllShuffles(init,orders,fResult,...
+function [xstars,fstars,exitflags]=optimizeAllShuffles(init,orders,fResult,...
     nResult,regions,robot)
 
 skip={};
 N=length(orders);
 xstars={};
+fstars=zeros(N,1)+NaN;
 exitflags=zeros(N,1)+9;
 
 
@@ -15,7 +16,7 @@ for i=1:length(orders)
         exitflags(i)=-20;
     else
         
-        [xstar,~,exitflag,~]=optimFinalStabInitStabConst(init,order{1},...
+        [xstar,fstars(i),exitflag,~]=optimFinalStabInitStabConst(init,order{1},...
             fResult,nResult,regions,robot);
         xstars{i}=xstar;
         exitflags(i)=exitflag;
