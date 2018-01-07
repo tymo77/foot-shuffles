@@ -2,7 +2,7 @@ function [xstar,fstar,exitflag,output]=optimFinalStabInitStabAndLegConst(init,..
     order,fResult,nResult,regions,robot)
 
 initstab=angularStabilityMargin(robot.bodyPos, init, fResult, nResult);
-thresh=initstab;
+threshStab=initstab;
 threshLeg=.1;
 
 

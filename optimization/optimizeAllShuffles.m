@@ -16,7 +16,7 @@ for i=1:length(orders)
         exitflags(i)=-20;
     else
         
-        [xstar,fstars(i),exitflag,~]=optimFinalStabInitStabConst(init,order{1},...
+        [xstar,fstars(i),exitflag,~]=optimFinalStabInitStabAndLegConst(init,order{1},...
             fResult,nResult,regions,robot);
         xstars{i}=xstar;
         exitflags(i)=exitflag;
