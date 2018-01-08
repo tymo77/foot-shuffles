@@ -25,6 +25,6 @@ for i=1:N
     end
 end
 
-[paretoFront,indices]=paretoMinMax([noSteps endStab])
+[paretoFront,indices]=paretoMinMax([noSteps endStab]);
 
 end
