@@ -15,7 +15,7 @@ test=false(N,1);
 
 for i=1:N
     indices=1:N;
-    indices(si)=[];
+    indices(i)=[];
     
     %pareto condition
     test(i)=~any(all(listPairs(indices,:)<=listPairs(i,:),2));
