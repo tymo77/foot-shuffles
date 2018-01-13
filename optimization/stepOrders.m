@@ -7,5 +7,18 @@ for i=1:N
     end
 end
 
+
+if method ==3
+    %remove moves with subsequent opposites
+    for i=1:length(ordersList)
+        for j=1:length(ordersList{i})-1
+            if abs(ordersList{i}(j+1)-ordersList{i}(j))==2
+                ordersList{i}=[];
+                break
+            end
+        end
+    end
+end
+
 ordersList=ordersList(~cellfun('isempty',ordersList));
 end

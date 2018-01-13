@@ -6,24 +6,34 @@ legs=[1 2 3 4];
 if numel(initmoveable)==0
     order=[];
 else
-if method == 1
-    
-    if N<=4
-        order=permsr(nchoosek(legs,N));
+    if method == 1
+        
+        if N<=4
+            order=permsr(nchoosek(legs,N));
+            
+            
+            %get only those which are initially moveable
+            
+        else
+            error('invalid step order gen method for no. of steps (N)')
+        end
+    elseif method == 2
+        order=permsVKN(legs,setdiff(legs,initmoveable),N);
         
         
-        %get only those which are initially moveable
+    elseif method == 3
+        if N<=4
+            order=permsr(nchoosek(legs,N));
+        else
+            error('invalid step order gen method for no. of steps (N)')
+        end
+       
         
     else
-        error('invalid step order gen method for no. of steps (N)')
+        error('invalid step order gen method')
     end
-elseif method == 2
-    order=permsVKN(legs,setdiff(legs,initmoveable),N);
-else
-    error('invalid step order gen method')
-end
-
-order=order(any(order(:,1)==initmoveable,2),:);
+    
+    order=order(any(order(:,1)==initmoveable,2),:);
 end
 end
 
