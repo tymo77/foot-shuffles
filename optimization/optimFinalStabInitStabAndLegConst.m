@@ -1,5 +1,5 @@
 function [xstar,fstar,exitflag,output]=optimFinalStabInitStabAndLegConst(init,...
-    order,fResult,nResult,regions,robot)
+    order,fResult,nResult,regions,robot,gsOn)
 
 initstab=angularStabilityMargin(robot.bodyPos, init, fResult, nResult);
 threshStab=initstab;
@@ -18,7 +18,15 @@ problem = struct('solver','fmincon','x0',init(order,1:2),...
     'objective',f,'nonlcon',nonlconst,'Aineq',[],'bineq',[],...
     'Aeq',[],'beq',[],'lb',[],'ub',[],'options',opts);
 
-tic;
-[xstar,fstar,exitflag,output] =fmincon(problem);
-toc
+if gsOn
+    gs=GlobalSearch;
+    
+    tic;
+    [xstar,fstar,exitflag,output] =run(gs,problem);
+    toc
+else
+    tic;
+    [xstar,fstar,exitflag,output] =fmincon(problem);
+    toc
+end
 end

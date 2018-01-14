@@ -1,5 +1,5 @@
 function [xstars,fstars,exitflags]=optimizeAllShuffles(init,orders,fResult,...
-    nResult,regions,robot)
+    nResult,regions,robot,gsOn)
 
 skip={};
 N=length(orders);
@@ -17,7 +17,7 @@ for i=1:length(orders)
     else
         
         [xstar,fstars(i),exitflag,~]=optimFinalStabInitStabAndLegConst(init,order{1},...
-            fResult,nResult,regions,robot);
+            fResult,nResult,regions,robot,gsOn);
         xstars{i}=xstar;
         exitflags(i)=exitflag;
         if exitflag==-2

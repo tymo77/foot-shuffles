@@ -1,4 +1,4 @@
-function showResult(xstar,order,init,regions,robot,fResult,nResult,exitflag)
+function [endStab,stability,interstability]=showResult(xstar,order,init,regions,robot,fResult,nResult,exitflag)
 
 switch exitflag
     case -2
@@ -33,4 +33,5 @@ disp([n [NaN order]' stability [interstability; NaN]]);
 p=scatter3(xyzstar(:,1),xyzstar(:,2),xyzstar(:,3)+.1,100,'rx');
 p.LineWidth=2;
 
+endStab=stability(end,:);
 end
