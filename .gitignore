@@ -5,3 +5,5 @@
 *.mat
 temp*
 ex_*
+results/*
+*.nb
