@@ -1,9 +1,10 @@
-function exportShuffle(order,pts,name)
+function exportShuffle(order,pts,methodName,problemName)
 
 %convert input to character array
-name=convertStringsToChars(name);
+methodName=convertStringsToChars(methodName);
+problemName=convertStringsToChars(problemName);
 
-folderName=['results/' name];
+folderName=['results/' problemName '/' methodName];
 mkdir(folderName)
 
 pointsFile = fopen([folderName '/points'],'w');
