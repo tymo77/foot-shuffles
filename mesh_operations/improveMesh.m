@@ -8,6 +8,10 @@ while step<10
     step=step+1;
     
     nTri=size(clean,1);
+    
+    %heal small edge cracks
+    clean=remvEdgeCrack(clean);
+    
     % remove bad cells
     clean=remvBadCells(clean,points);
 
@@ -17,7 +21,7 @@ while step<10
     nCleaned=nTri-size(clean,1);
     
     
-    if nCleaned<1
+    if nCleaned==0
         break
     end
 end

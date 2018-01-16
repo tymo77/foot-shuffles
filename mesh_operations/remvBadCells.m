@@ -12,14 +12,14 @@ for i=1:length(allindices)
         continue
     end
     
-    pt1=points(allindices(i),:);
+    pt1=points(allindices(i),1:2);
     for j=i+1:length(allindices)
         if sum(duplicateList==j)>0%if j is in the skip array, skip it
             continue
         end
         
-        pt2=points(allindices(j),:);
-        if norm(pt1-pt2)<100*eps
+        pt2=points(allindices(j),1:2);
+        if norm(pt1-pt2)<10^-4
             counter=counter+1;
             duplicateList=[duplicateList allindices(j)];
             duplicateMap=[duplicateMap;allindices(j),allindices(i)];

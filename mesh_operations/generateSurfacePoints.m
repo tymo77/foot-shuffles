@@ -6,7 +6,7 @@ y=linspace(ybnds(1),ybnds(2),N);
 [X,Y]=meshgrid(x,y);
 
 if type=='wave'
-    Z=1/10*sin(2*X).*sin(2*Y+pi);
+    Z=1/3*sin(2*X).*sin(2*Y+pi);
 elseif type=='flat'
     Z=0*X;
 else
