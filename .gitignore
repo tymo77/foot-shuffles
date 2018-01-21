@@ -7,3 +7,6 @@ temp*
 ex_*
 results/*
 *.nb
+*.avi
+*.eps
+*.gif
