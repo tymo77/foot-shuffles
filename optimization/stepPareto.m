@@ -27,4 +27,6 @@ end
 
 [paretoFront,indices]=paretoMinMax([noSteps endStab]);
 
+%add initial condition
+paretoFront=[0 angularStabilityMargin(robot.bodyPos, init, fResult, nResult);paretoFront];
 end
