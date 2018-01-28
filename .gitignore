@@ -4,7 +4,7 @@
 *.asv
 *.mat
 temp*
-ex_*
+ex*
 results/*
 *.nb
 *.avi

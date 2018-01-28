@@ -3,15 +3,15 @@ function [pareto,indices]=paretoMin(listPairs)
 if size(listPairs,2)~=2
     error('paretoMin is meant to compare a list of pairs')
 end
+key=1:size(listPairs,1);
 
 %remove NaN entries
+key(any(isnan(listPairs),2))=[];
 listPairs(any(isnan(listPairs),2),:)=[];
+
 
 N=size(listPairs,1);
 test=false(N,1);
-
-
-
 
 for i=1:N
     indices=1:N;
@@ -39,5 +39,6 @@ end
 pareto=listPairs(test,:);
 indices=1:N;
 indices=indices(test);
+indices=key(indices);
 
 end
