@@ -1,4 +1,9 @@
 function regions=buildAllRegions(minAngles,maxAngles,N,surface,robot)
+% buildAllRegions creates the regions of the stepspace
+%   regions = buildAllRegions(minAngles,maxAngles,N,surface,robot) creates
+%   a struct of regions where based on the joint angle limits, where N is
+%   the number of discretized samples of the joint range, surface is the
+%   surfaces map, robot is the robot struct
 
 if all((surface~='wave')&(surface~='flat'))
     error('not valid surface')

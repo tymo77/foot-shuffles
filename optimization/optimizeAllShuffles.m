@@ -1,5 +1,22 @@
 function [xstars,fstars,exitflags]=optimizeAllShuffles(init,orders,fResult,...
     nResult,regions,robot,gsOn)
+% optimizeAllShuffles finds the optimum foot placements for each steporder
+%   [xstars,fstars,exitflags] = optimizeAllShuffles(init,orders,fResult,...
+%    nResult,regions,robot,gsOn)
+%   init - initial foot positions
+%   orders - possible steporders
+%   fresult/nresult - resultant force/moment vectors
+%   regions - stepspaces
+%   robot - robot struct with all its parameters
+%   gsOn - use global search on/off (must have Global Opt Toolbox)
+%   
+%   xstars - x,y of opt foot positions for each shuffle
+%   fstars - fitness of each shuffle
+%   exitflags - exit flag of each shuffle:
+%       exitflag > 0 : optimum solution
+%       exitflag = -20 : shuffle was skipped because it would be
+%       reduntant and have no feasible solution
+% see fmincon for other exitflags
 
 skip={};
 N=length(orders);

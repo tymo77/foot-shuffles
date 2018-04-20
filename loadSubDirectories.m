@@ -1,4 +1,6 @@
 function loadSubDirectories()
+% loadSubDirectories  loads all subdirectories of the current directory
+%   does not load sub-subdirectories etc.
 
 currentFolderContents = dir(pwd);      %Returns all files and folders in the current folder
 currentFolderContents (~[currentFolderContents.isdir]) = [];  %Only keep the folders

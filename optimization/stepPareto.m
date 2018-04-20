@@ -1,4 +1,18 @@
 function [paretoFront, indices]=stepPareto(xstars,orders,exitflags,init,fResult,nResult,regions,robot)
+% stepPareto constructs the paretoFront of the optimized steporders
+%   [paretoFront, indices]=stepPareto(xstars,orders,exitflags,init,fResult,nResult,regions,robot)
+%   xstars - optimized foot locations for each shuffle
+%   orders - step orders of each shuffle
+%   exitflags - exitflag of the solver for each shuffle
+%   init - intial foot positions
+%   fResult/nResult - resultant force vectors
+%   regions - step space regions
+%   robot - robot struct
+%
+%   indices - indices of xstar&orders of the paeto-optima
+%   paretoFront - pareto front in length and stability
+
+
 %initialize foot positions
 
 N=length(orders);

@@ -1,3 +1,5 @@
+FOOT SHUFFLE OPTIMIZER
+
 Created by Tyler Morrison as an extension to Undergraduate Research
 conducted at the University of Tulsa from 2016-2017.
 - BRAT Lab
@@ -15,3 +17,11 @@ than carefully.
 
 "loadSubDirectories" should be executed before any of the functions can be
 executed.
+
+ex_problem1 has some comments on each step
+
+Contact:
+Tyler Morrison - New: morrison.730@osu.edu, Old: tym856@utulsa.edu
+Dr. Schultz - joshua-schultz@utulsa.edu
+
+Last Modified: 4/20/2018
