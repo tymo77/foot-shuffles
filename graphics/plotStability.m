@@ -23,5 +23,6 @@ xticks(0:length(stability)-1)
 xlabel('Step Number')
 ylabel('Angular stability margin')
 
-legend([p2 p3],'Stability after step','Stability during step','Location','northwest')
+legend([p2 p3],'Stability (4-foot support phase)',...
+    'Intermediate stability (3-foot support phase)','Location','northwest')
 end
