@@ -3,8 +3,6 @@
 *.dat
 *.asv
 *.mat
-temp*
-ex*
 results/*
 *.nb
 *.avi
